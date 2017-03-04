@@ -5,19 +5,48 @@ import {
   Text,
   View,
   TextInput,
-  TouchableHighlight,
+  TouchableOpacity,
 } from 'react-native';
 
 export class Todo extends Component {
   constructor() {
     super();
     this.state = {
-      text: '',
+      todos: [],
+      newTodo: '',
     }
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handlePress = this.handlePress.bind(this);
   }
+
+  handleChange(text) {
+    this.setState({
+      newTodo: text
+    })
+  }
+
+  handlePress() {
+    const todos = [...this.state.todos, this.state.newTodo];
+    this.setState({
+      todos,
+      newTodo: '',
+    })
+  }
+
   render() {
     return (
-      <Text>Hello!</Text>
+      <View style={{marginTop: "10%"}}>
+        <TextInput value={this.state.newTodo} onChangeText={this.handleChange} style={{height: '20%'}}/>
+        <TouchableOpacity onPress={this.handlePress}>
+          <Text>Create</Text>
+        </TouchableOpacity>
+        <View>
+          {this.state.todos.map((todo, i) => {
+              return (<Text key={i}>{todo}</Text>)
+            })}
+        </View>
+      </View>
     );
   }
 }

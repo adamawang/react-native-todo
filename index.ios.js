@@ -13,7 +13,7 @@ import { Todo } from './src/app/todo';
 export default class Main extends Component {
   render() {
     return (
-      <Todo />
+      <Todo style={styles.welcome}/>
     );
   }
 }
