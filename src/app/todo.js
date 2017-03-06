@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-export class Todo extends Component {
+export default class Todo extends Component {
   constructor() {
     super();
     this.state = {
@@ -36,8 +36,13 @@ export class Todo extends Component {
 
   render() {
     return (
-      <View style={{marginTop: "10%"}}>
-        <TextInput value={this.state.newTodo} onChangeText={this.handleChange} style={{height: '20%'}}/>
+      <View style={{marginTop: 20}}>
+        <TextInput
+          value={this.state.newTodo}
+          onChangeText={this.handleChange}
+          style={{height: 20}}
+          placeholder="Type a todo here"
+        />
         <TouchableOpacity onPress={this.handlePress}>
           <Text>Create</Text>
         </TouchableOpacity>
